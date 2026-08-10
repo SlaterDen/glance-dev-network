@@ -186,6 +186,12 @@ class HttpHost:
         params = _clean_str_dict(params, "params")
         ttl = int(ttl_seconds)
 
+        # Kill switch for testing an app's no-network fallback (set by
+        # `gdn mcp` render_app simulate_offline). Bypasses the cache too —
+        # the point is to see what the panel shows when there's NO data.
+        if os.environ.get("GDN_HTTP_OFFLINE"):
+            return _response(0, "", error="offline (simulated)")
+
         key = _cache_key(url, params, headers)
         cached = _cache_read(key, ttl)
         if cached is not None:

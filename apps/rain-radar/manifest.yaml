@@ -1,0 +1,32 @@
+# GDN app manifest (v2). This file is the source of truth for how your app is
+# configured and reviewed.
+gdn: 1
+id: rain-radar
+version: 0.1.0
+name: Rain Radar
+author: AJ
+description: Average daily rainfall across a ~100-mile radius of your ZIP over the past 60 days, drawn as a sparkline.
+entry: app.star
+
+width: 128
+height: 32
+
+# One radius-averaged fetch an hour is plenty for daily rainfall data.
+refresh: 3600
+
+pages: [rain]
+
+inputs:
+  - key: zip
+    type: string
+    app_input_type: free-text
+    label: US ZIP code
+    default: "32601"
+    help: The center of the sampling radius.
+  - key: radius
+    type: string
+    app_input_type: dropdown
+    label: Radius (miles)
+    options: ["50", "100", "150", "200"]
+    default: "100"
+    help: How far around the ZIP to average rainfall over.

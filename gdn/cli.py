@@ -7,6 +7,7 @@
     gdn build [dir]      render every page to PNG + .bin under build/
     gdn submit [dir]     validate, then open a pull request to publish the app
     gdn fonts            list the bundled bitmap fonts
+    gdn mcp              serve the SDK as MCP tools for AI assistants (stdio)
     gdn version          print the version
 """
 from __future__ import annotations
@@ -283,6 +284,11 @@ def cmd_submit(args) -> int:
     return 0
 
 
+def cmd_mcp(args) -> int:
+    from .mcp_server import serve
+    return serve()
+
+
 def cmd_fonts(args) -> int:
     names = fonts.list_fonts()
     print(f"{len(names)} bundled fonts:\n")
@@ -371,6 +377,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     f = sub.add_parser("fonts", help="list bundled bitmap fonts")
     f.set_defaults(func=cmd_fonts)
+
+    mc = sub.add_parser("mcp", help="serve the SDK as MCP tools for AI assistants (stdio)")
+    mc.set_defaults(func=cmd_mcp)
 
     v = sub.add_parser("version", help="print version")
     v.set_defaults(func=cmd_version)

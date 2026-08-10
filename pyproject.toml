@@ -26,4 +26,4 @@ gdn = "gdn.cli:main"
 include = ["gdn*"]
 
 [tool.setuptools.package-data]
-gdn = ["data/*.json", "templates/example/*", "templates/example-star/*"]
+gdn = ["data/*.json", "data/*.md", "templates/example/*", "templates/example-star/*"]

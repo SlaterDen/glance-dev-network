@@ -12,6 +12,12 @@ from pathlib import Path
 
 from .runner import load_manifest
 
+# The lowercase-text check looks at string literals, but not every lowercase
+# character in one reaches the panel: `%d` / `%s` / `%.1f` are format specifiers
+# the `%` operator consumes, and `\n` is an escape. Ignore both, or the shipped
+# template trips its own linter — "H%d L%d" draws as "H72 L60".
+_NOT_DRAWN = re.compile(r"%[#0\- +]*\d*(?:\.\d+)?[a-zA-Z%]|\\[a-zA-Z]")
+
 _KNOWN_KEYS = {
     "gdn", "id", "version", "name", "author", "description", "entry",
     "width", "height", "refresh", "pages", "inputs", "assets", "category",
@@ -98,7 +104,7 @@ def check_app(app_dir) -> tuple:
                 errors.append(f"setting `{k}` is declared but never used in app.star "
                               f'(read it with ctx.inputs.get("{k}"), or remove it from the manifest)')
         for lit in re.findall(r"""c\.text[a-z_]*\(\s*['"]([^'"]*)['"]""", src):
-            if any(ch.islower() for ch in lit):
+            if any(ch.islower() for ch in _NOT_DRAWN.sub("", lit)):
                 warns.append(f'text "{lit}" has lowercase; fonts are UPPERCASE-only, call .upper()')
                 break
     return (errors, warns)

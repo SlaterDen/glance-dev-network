@@ -1,0 +1,29 @@
+gdn: 1
+id: florida-time
+version: 0.1.0
+name: Florida Time
+author: glance-led
+description: The current time in Florida, with daylight saving handled from the US rules — no network call, so the panel never shows a stale clock or an error. Covers both the Eastern peninsula and the Central panhandle.
+category: Time
+entry: app.star
+width: 128
+height: 32
+# The clock only changes by the minute.
+refresh: 60
+pages: [main]
+inputs:
+  - key: region
+    type: choice
+    app_input_type: dropdown
+    label: Part of Florida
+    default: peninsula
+    help: The panhandle west of the Apalachicola River is on Central time; the rest of the state is Eastern.
+    choices: [peninsula, panhandle]
+  # No '_' or '-' in input keys: they delimit the render descriptor, so a value
+  # under such a key never reaches the app.
+  - key: hourformat
+    type: choice
+    app_input_type: dropdown
+    label: Hour format
+    default: "12"
+    choices: ["12", "24"]

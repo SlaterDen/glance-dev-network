@@ -1,0 +1,20 @@
+gdn: 1
+id: the-coop
+version: 0.1.0
+name: "The Coop"
+author: "gabetrainor"
+description: A welcome card for The Coop -- logo plus a welcome message.
+category: Lifestyle
+entry: app.star
+
+width: 192
+height: 32
+
+# Static content -- nothing here ever changes, so there's no reason to
+# re-render often.
+refresh: 3600
+
+pages: [main]
+
+assets:
+  - logo.png
