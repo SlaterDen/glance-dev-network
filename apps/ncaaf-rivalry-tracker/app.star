@@ -61,7 +61,7 @@ def cfbd_get(path, params, apikey):
         "https://api.collegefootballdata.com" + path,
         headers={"Authorization": "Bearer " + apikey},
         params=params,
-        ttl_seconds=refresh: 86400,
+        ttl_seconds=86400,
     )
 
 def _safe_int(val):
@@ -88,12 +88,16 @@ def main(c, ctx):
     apikey = _s(ctx, "apikey", "")
     user_t1 = _s(ctx, "team1", "Oklahoma")
     user_t2 = _s(ctx, "team2", "Texas")
-    custom_title = _s(ctx, "customtitle", "")
     name_mode = _s(ctx, "teamnamelength", "Abbreviations")
 
     if not apikey:
         c.text_center("ADD CFBD API KEY".upper(), 8, font="5x7", color="red")
         c.text_center("COLLEGEFOOTBALLDATA.COM", 20, font="4x5", color="gray")
+        return
+
+    if _norm(user_t1) == _norm(user_t2):
+        c.text_center("PICK TWO DIFFERENT TEAMS", 8, font="5x7", color="amber")
+        c.text_center("TEAM 1 AND TEAM 2 MATCH", 20, font="4x5", color="gray")
         return
 
     # Derive year dynamically, treating Jan/Feb as the previous CFB season
@@ -188,14 +192,11 @@ def main(c, ctx):
     r1_val = rankings_map.get(_norm(team1))
     r2_val = rankings_map.get(_norm(team2))
 
-    if custom_title:
-        title = custom_title.upper()
+    title = rivalry_title(user_t1, user_t2)
+    if title == None:
+        title = "TEAM SERIES HISTORY"
     else:
-        title = rivalry_title(user_t1, user_t2)
-        if title == None:
-            title = "TEAM SERIES HISTORY"
-        else:
-            title = title.upper()
+        title = title.upper()
 
     games = data.get("games", [])
     if games == None:

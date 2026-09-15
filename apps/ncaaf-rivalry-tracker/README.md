@@ -12,9 +12,8 @@ Display historic college football rivalry series, head-to-head records, rankings
 | Setting | Required | Description |
 |--------|----------|-------------|
 | **API Key** | Yes | Your API key from [CollegeFootballData.com](https://collegefootballdata.com/) |
-| **Team 1** | Yes | First school name (e.g. `Oklahoma`, `Notre Dame`) |
-| **Team 2** | Yes | Second school name (e.g. `Texas`, `Tennessee`) |
-| **Custom Title** | No | Optional banner title override. Blank = automatic rivalry name lookup |
+| **Team 1** | Yes | First school, picked from the FBS list (e.g. `Oklahoma`, `Notre Dame`) |
+| **Team 2** | Yes | Second school, picked from the FBS list (e.g. `Texas`, `Tennessee`) |
 | **Team Name Length** | Yes | Choose between **Abbreviations** or **Full Name** (up to 12 characters + series win tally) |
 
 ---
@@ -33,7 +32,7 @@ The College Football Data API provides free tiers suitable for personal display 
 
 | Page | What’s shown |
 |------|----------------|
-| **Main Series View** | Custom banner title, CFP/AP rankings, split-color series history progress bar with team win totals, team abbreviations or full names, and a 3-section bottom ticker. |
+| **Main Series View** | Rivalry banner title, CFP/AP rankings, split-color series history progress bar with team win totals, team abbreviations or full names, and a 3-section bottom ticker. |
 | **First Meeting View** | Dynamic gradient background for teams that have never played before, with scheduled next matchup details. |
 
 ### Bottom 3-Section Grid Box Breakdown
@@ -59,7 +58,8 @@ This app is **not** affiliated with the NCAA or CollegeFootballData.com. All spo
 | What you see | Likely cause | What to try |
 |--------------|--------------|-------------|
 | **ADD CFBD API KEY** | Missing API key setting | Enter your College Football Data API key in the app settings |
-| **INVALID TEAM INPUT** / **CHECK TEAMS SPELLING** | Misspelled or unrecognized school name | Verify the spelling of Team 1 and Team 2 against official FBS names |
+| **INVALID TEAM INPUT** / **CHECK TEAMS SPELLING** | A saved school name that isn't on the FBS list | Pick Team 1 and Team 2 again from the dropdowns |
+| **PICK TWO DIFFERENT TEAMS** | Team 1 and Team 2 are the same school | Choose a different school for one of them |
 | **NO SERIES DATA** | API returned empty series record | Ensure both teams are valid FBS opponents with a recorded history |
 | **API ERROR** | Network issue or invalid key | Check your API key or verify API service status |
 
