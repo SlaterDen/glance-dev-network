@@ -3,7 +3,7 @@ id: where-waldo
 version: 0.1.0
 name: "Where Waldo"
 author: "Brayden Slater"
-description: A new Glance app.
+description: Find the striped hero hiding in a busy beach, city, or fairground scene. This app is based on the Where Waldo book series.
 category: Fun
 entry: app.star
 width: 384
