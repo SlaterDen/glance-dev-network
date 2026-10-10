@@ -3,7 +3,7 @@ id: ncaam-rivalry-tracker
 version: 1.0
 name: NCAAM Rivalry Tracker
 author: Brayden Slater
-description: Head-to-head series for any two college basketball teams (Winsipedia-style).
+description: Head-to-head series for any two college basketball teams over the last seven seasons, from ESPN.
 category: Sports
 entry: app.star
 width: 192
@@ -11,11 +11,6 @@ height: 32
 refresh: 86400
 pages: [main]
 inputs:
-  - key: apikey
-    type: string
-    app_input_type: api-key
-    label: CFBD API Key
-    help: Free key from collegefootballdata.com. The same key works for basketball data.
   - key: team1
     type: choice
     app_input_type: dropdown
