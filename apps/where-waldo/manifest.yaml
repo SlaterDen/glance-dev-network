@@ -1,8 +1,8 @@
 gdn: 1
 id: where-waldo
-version: 0.1.0
-name: "Where Waldo"
-author: "Brayden Slater"
+version: 2.0.0
+name: Where Waldo
+author: SlaterDen
 description: Find the striped hero hiding in a busy beach, city, or fairground scene. This app is based on the Where Waldo book series.
 category: Fun
 entry: app.star
@@ -21,5 +21,5 @@ inputs:
     type: choice
     app_input_type: dropdown
     label: Scenes
-    choices: [BEACH, CITY, FAIR]
-    default: BEACH
+    choices: [BEACH, CITY, FAIR, SKI SLOPES, GROCERY STORE, MOVIE THEATER, MUSIC CONCERT, SPORTS STADIUM, CAMPSITE, HOLLYWOOD]
+    default: CITY
